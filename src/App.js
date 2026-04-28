@@ -7,6 +7,7 @@ import PostTransfer from './pages/PostTransfer';
 import SearchTransfer from './pages/SearchTransfer';
 import AdminPanel from './pages/AdminPanel';
 import Profile from './pages/Profile';
+import Home from './pages/Home';
 
 function PrivateRoute({ children }) {
   const token = localStorage.getItem('token');
@@ -17,9 +18,15 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Navigate to="/login" />} />
+
+        {/* Public Home Page */}
+        <Route path="/" element={<Home />} />
+
+        {/* Auth Pages */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+
+        {/* Protected Routes */}
         <Route path="/dashboard" element={
           <PrivateRoute><Dashboard /></PrivateRoute>
         } />
@@ -33,8 +40,9 @@ function App() {
           <PrivateRoute><AdminPanel /></PrivateRoute>
         } />
         <Route path="/profile" element={
-        <PrivateRoute><Profile /></PrivateRoute>
+          <PrivateRoute><Profile /></PrivateRoute>
         } />
+
       </Routes>
     </BrowserRouter>
   );

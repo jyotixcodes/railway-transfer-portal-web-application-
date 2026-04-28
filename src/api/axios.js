@@ -13,7 +13,7 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-// Auto logout if token expires (403 or 401 response)
+// Auto logout if token expires
 api.interceptors.response.use(
   (response) => response,
   (error) => {
